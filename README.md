@@ -139,3 +139,56 @@ nano ~/.config/niri/cfg/keybinds.kdl
 # Mod+Shift+M { maximize-window-to-edges; }
 
 niri msg action load-config-file
+
+# ==============================
+# NVM Shell Performance Fix
+# ==============================
+# Lazy-load nvm to avoid slow shell startup.
+# Remove/comment any existing eager nvm lines like:
+#   export NVM_DIR="$HOME/.nvm"
+#   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+#   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+
+export NVM_DIR="$HOME/.nvm"
+
+__load_nvm() {
+  unset -f nvm node npm npx pnpm yarn corepack 2>/dev/null
+
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+}
+
+nvm() { __load_nvm; nvm "$@"; }
+node() { __load_nvm; command node "$@"; }
+npm() { __load_nvm; command npm "$@"; }
+npx() { __load_nvm; command npx "$@"; }
+pnpm() { __load_nvm; command pnpm "$@"; }
+yarn() { __load_nvm; command yarn "$@"; }
+corepack() { __load_nvm; command corepack "$@"; }
+
+# ==============================
+# Lazygit Alias
+# ==============================
+alias lazy='lazygit'
+
+# ==============================
+# Treesitter
+# ==============================
+`sudo pacman -S tree-sitter-cli`
+
+# ==============================
+# For Yazi
+# ==============================
+`sudo pacman -S 7zip zoxide resvg`
+
+# ==============================
+# Proton VPN
+# ==============================
+`sudo pacman -S proton-vpn-gtk-app`
+run with:
+`protonvpn-app`
+
+# ==============================
+# Monitor Arrangement
+# ==============================
+`sudo pacman -S --needed wdisplays`
