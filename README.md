@@ -19,7 +19,7 @@ capslock = overload(meta, esc)
 # ==============================
 # AppImageLauncher from upstream
 # ==============================
-
+```
 sudo pacman -S --needed \
   git base-devel cmake \
   glib2 cairo librsvg fuse2 libarchive libxpm \
@@ -52,7 +52,7 @@ sudo make install
 
 which AppImageLauncher
 which appimagelauncherd
-
+```
 
 # ==============================
 # Switch CachyOS from fish to zsh
