@@ -192,3 +192,62 @@ run with:
 # Monitor Arrangement
 # ==============================
 `sudo pacman -S --needed wdisplays`
+
+# ==============================
+# Make CachyOS Hyprland looke like CachyOS Niri
+# ==============================
+```
+sudo pacman -Syu
+sudo pacman -S --needed cachyos-hypr-noctalia
+```
+Then replace your user configs with the package’s CachyOS defaults:
+```
+rm -rf \
+  ~/.config/hypr \
+  ~/.config/noctalia \
+  ~/.config/btop \
+  ~/.config/dolphinrc \
+  ~/.config/gtk-3.0 \
+  ~/.config/gtk-4.0 \
+  ~/.config/kdeglobals \
+  ~/.config/kitty \
+  ~/.config/menus \
+  ~/.config/qt6ct \
+  ~/.config/uwsm \
+  ~/.config/xsettingsd \
+  ~/.icons/default \
+  ~/.local/share/icons/Bibata-Modern-Ice
+
+mkdir -p ~/.config ~/.icons ~/.local/share/icons
+
+cp -a /etc/skel/.config/hypr ~/.config/
+cp -a /etc/skel/.config/noctalia ~/.config/
+cp -a /etc/skel/.config/btop ~/.config/
+cp -a /etc/skel/.config/dolphinrc ~/.config/
+cp -a /etc/skel/.config/gtk-3.0 ~/.config/
+cp -a /etc/skel/.config/gtk-4.0 ~/.config/
+cp -a /etc/skel/.config/kdeglobals ~/.config/
+cp -a /etc/skel/.config/kitty ~/.config/
+cp -a /etc/skel/.config/menus ~/.config/
+cp -a /etc/skel/.config/qt6ct ~/.config/
+cp -a /etc/skel/.config/uwsm ~/.config/
+cp -a /etc/skel/.config/xsettingsd ~/.config/
+cp -a /etc/skel/.icons/default ~/.icons/
+cp -a /etc/skel/.local/share/icons/Bibata-Modern-Ice ~/.local/share/icons/
+```
+Then reboot:
+`systemctl reboot`
+At SDDM, choose the Hyprland/UWSM Hyprland session if there are multiple Hyprland entries.
+
+Do not build Noctalia manually from GitHub for this setup. The CachyOS package path should give you:
+```
+cachyos-hypr-noctalia
+noctalia-shell
+noctalia-qs
+```
+You can verify afterward with:
+```
+command -v qs
+pacman -Q cachyos-hypr-noctalia noctalia-shell noctalia-qs
+hyprctl configerrors
+```
